@@ -1,0 +1,760 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #14213D;
+  --color-navy-dark: #0A1120;
+  --color-navy-card: #101B30;
+  --color-cream: #F4EDE0;
+  --color-cream-light: #FAF6F0;
+  --color-cream-muted: #D9CEBC;
+  
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+:root {
+  --navy: #14213D;
+  --navy-dark: #0A1120;
+  --cream: #F4EDE0;
+  color-scheme: dark;
+}
+
+/* Seamless Water Drop Expanding Ripple */
+@keyframes waterDropSpread {
+  0% {
+    clip-path: circle(0px at var(--ripple-x, 50%) var(--ripple-y, 50%));
+    opacity: 1;
+  }
+  65% {
+    clip-path: circle(160vmax at var(--ripple-x, 50%) var(--ripple-y, 50%));
+    opacity: 1;
+  }
+  100% {
+    clip-path: circle(160vmax at var(--ripple-x, 50%) var(--ripple-y, 50%));
+    opacity: 0;
+  }
+}
+
+/* Ambient Wallpaper Breathing & Ken Burns Motion */
+@keyframes wallpaperSway {
+  0%, 100% {
+    transform: scale(1.02) translate(0px, 0px);
+  }
+  50% {
+    transform: scale(1.05) translate(-4px, -3px);
+  }
+}
+
+/* Floating Wind Petals Animation */
+@keyframes petalDrift {
+  0% {
+    transform: translate3d(60px, -20px, 0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  80% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate3d(-160px, 80px, 0) rotate(240deg);
+    opacity: 0;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #070C16;
+  color: #F4EDE0;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+body {
+  background-color: transparent;
+  color: inherit;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: #F4EDE0;
+  color: #14213D;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #0A1120;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(244, 237, 224, 0.3);
+  border-radius: 2px;
+}
+
+/* ==============================================================
+   DARK MODE TACTILE 3D STYLES (ORIGINAL NAVY & CREAM PALETTE)
+   ============================================================== */
+.card-3d-navy {
+  background-color: #101B30;
+  color: #F4EDE0;
+  border: 1px solid rgba(244, 237, 224, 0.25);
+  box-shadow: 4px 4px 0px 0px rgba(244, 237, 224, 0.85);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-3d-navy:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #F4EDE0;
+  border-color: #F4EDE0;
+}
+
+.card-3d-cream {
+  background-color: #F4EDE0;
+  color: #14213D;
+  border: 2px solid #14213D;
+  box-shadow: 4px 4px 0px 0px #14213D;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-3d-cream:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #14213D;
+}
+
+.btn-3d-cream {
+  background-color: #F4EDE0;
+  color: #14213D;
+  border: 1.5px solid #F4EDE0;
+  box-shadow: 3px 3px 0px 0px rgba(244, 237, 224, 0.4);
+  transition: all 0.15s ease-out;
+}
+.btn-3d-cream:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px 0px #F4EDE0;
+}
+.btn-3d-cream:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #F4EDE0;
+}
+
+.btn-3d-navy {
+  background-color: #14213D;
+  color: #F4EDE0;
+  border: 1.5px solid rgba(244, 237, 224, 0.4);
+  box-shadow: 3px 3px 0px 0px rgba(244, 237, 224, 0.2);
+  transition: all 0.15s ease-out;
+}
+.btn-3d-navy:hover {
+  border-color: #F4EDE0;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px 0px rgba(244, 237, 224, 0.6);
+}
+.btn-3d-navy:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px rgba(244, 237, 224, 0.6);
+}
+
+/* ==============================================================
+   WHITE MODE (HIGH-CONTRAST PURE WHITE & BLACK MONOCHROME)
+   ============================================================== */
+html.light {
+  background-color: #F3F4F6 !important;
+  color: #000000 !important;
+  color-scheme: light;
+}
+
+html.light body {
+  background-color: transparent !important;
+  color: #000000 !important;
+}
+
+html.light ::selection {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #FFFFFF !important;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Base structural containers in White Mode */
+html.light .bg-\[\#070C16\],
+html.light .bg-\[\#0A1120\],
+html.light .bg-\[\#0D1527\],
+html.light .bg-\[\#080D18\],
+html.light div.max-w-6xl {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+}
+
+/* Hero Bench-Testing Widget in White Mode */
+html.light .hero-bench-widget {
+  background-color: #F3F4F6 !important;
+  border-color: rgba(0,0,0,0.15) !important;
+  color: #000000 !important;
+}
+html.light .hero-bench-widget span {
+  color: #000000 !important;
+}
+html.light .hero-bench-icon {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+html.light .hero-bench-icon svg {
+  color: #FFFFFF !important;
+}
+html.light .hero-activity-icon {
+  color: #000000 !important;
+}
+html.light .hero-bar {
+  background-color: #000000 !important;
+}
+
+html.light section {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+}
+
+/* Sticky Header in White Mode */
+html.light header {
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+html.light nav.bg-\[\#14213D\] {
+  background-color: #F3F4F6 !important;
+  border-color: rgba(0, 0, 0, 0.18) !important;
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.2) !important;
+}
+
+html.light nav a {
+  color: rgba(0, 0, 0, 0.75) !important;
+}
+html.light nav a.bg-\[\#F4EDE0\] {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+/* Typography Overrides in White Mode */
+html.light .text-\[\#F4EDE0\] {
+  color: #000000 !important;
+}
+
+html.light .text-\[\#F4EDE0\]\/85,
+html.light .text-\[\#F4EDE0\]\/80,
+html.light .text-\[\#F4EDE0\]\/75,
+html.light .text-\[\#F4EDE0\]\/70 {
+  color: rgba(0, 0, 0, 0.8) !important;
+}
+
+html.light .text-\[\#F4EDE0\]\/60,
+html.light .text-\[\#F4EDE0\]\/50,
+html.light .text-\[\#F4EDE0\]\/45,
+html.light .text-\[\#F4EDE0\]\/40 {
+  color: rgba(0, 0, 0, 0.55) !important;
+}
+
+html.light .text-\[\#14213D\] {
+  color: #000000 !important;
+}
+html.light .text-\[\#14213D\]\/80,
+html.light .text-\[\#14213D\]\/75,
+html.light .text-\[\#14213D\]\/70 {
+  color: rgba(0, 0, 0, 0.75) !important;
+}
+
+/* Borders in White Mode */
+html.light .border-\[\#F4EDE0\]\/10,
+html.light .border-\[\#F4EDE0\]\/15,
+html.light .border-\[\#F4EDE0\]\/20,
+html.light .border-\[\#F4EDE0\]\/25,
+html.light .border-\[\#F4EDE0\]\/30,
+html.light .border-\[\#14213D\]\/10,
+html.light .border-\[\#14213D\]\/15,
+html.light .border-\[\#14213D\]\/20 {
+  border-color: rgba(0, 0, 0, 0.18) !important;
+}
+
+html.light .border-\[\#F4EDE0\],
+html.light .border-\[\#14213D\] {
+  border-color: #000000 !important;
+}
+
+/* 3D Shadows in White Mode */
+html.light .shadow-\[2px_2px_0px_0px_\#F4EDE0\],
+html.light .shadow-\[2\.5px_2\.5px_0px_0px_\#F4EDE0\],
+html.light .shadow-\[2px_2px_0px_0px_rgba\(244\,237\,224\,0\.25\)\],
+html.light .shadow-\[2px_2px_0px_0px_rgba\(244\,237\,224\,0\.2\)\] {
+  box-shadow: 2px 2px 0px 0px #000000 !important;
+}
+
+html.light .shadow-\[3px_3px_0px_0px_rgba\(244\,237\,224\,0\.3\)\],
+html.light .shadow-\[3px_3px_0px_0px_\#F4EDE0\],
+html.light .shadow-\[3px_3px_0px_0px_rgba\(244\,237\,224\,0\.4\)\] {
+  box-shadow: 3px 3px 0px 0px #000000 !important;
+}
+
+html.light .shadow-\[4px_4px_0px_0px_\#F4EDE0\],
+html.light .shadow-\[4px_4px_0px_0px_\#14213D\] {
+  box-shadow: 4px 4px 0px 0px #000000 !important;
+}
+
+html.light .shadow-\[6px_6px_0px_0px_\#14213D\],
+html.light .shadow-\[6px_6px_0px_0px_\#F4EDE0\] {
+  box-shadow: 6px 6px 0px 0px #000000 !important;
+}
+
+/* Status Strips & Badges in White Mode */
+html.light .bg-\[\#F4EDE0\] {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+html.light .bg-\[\#F4EDE0\] * {
+  color: #FFFFFF !important;
+}
+html.light .bg-\[\#F4EDE0\] .bg-\[\#14213D\] {
+  background-color: #FFFFFF !important;
+}
+
+/* 3D Tactile Cards in White Mode */
+html.light .card-3d-navy,
+html.light .card-3d-cream {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 4px 4px 0px 0px #000000 !important;
+}
+html.light .card-3d-navy:hover,
+html.light .card-3d-cream:hover {
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 6px 6px 0px 0px #000000 !important;
+}
+
+/* Ensure text inside cards is crisp black */
+html.light .card-3d-navy h2,
+html.light .card-3d-navy h3,
+html.light .card-3d-navy p,
+html.light .card-3d-navy span,
+html.light .card-3d-cream h2,
+html.light .card-3d-cream h3,
+html.light .card-3d-cream p,
+html.light .card-3d-cream span {
+  color: #000000 !important;
+}
+
+/* List items inside Skills cards in White Mode */
+html.light .card-3d-navy li.bg-\[\#0A1120\] {
+  background-color: #F8F9FA !important;
+  border-color: #E5E7EB !important;
+}
+html.light .card-3d-navy li.bg-\[\#0A1120\] span {
+  color: #000000 !important;
+}
+
+/* Chips, Tags & Secondary Panels in White Mode */
+html.light .bg-\[\#F4EDE0\]\/10,
+html.light .bg-\[\#14213D\]\/10,
+html.light .bg-\[\#101B30\] {
+  background-color: #F3F4F6 !important;
+  color: #000000 !important;
+}
+
+/* Project detail page domain badge in White Mode */
+html.light .project-domain-badge {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border: 1.5px solid #000000 !important;
+  box-shadow: 2px 2px 0px 0px #000000 !important;
+}
+
+/* =============================================
+   PROJECT PAGES & CARDS — WHITE MODE OVERRIDES
+   ============================================= */
+
+/* Project detail page root container */
+html.light div.min-h-screen.bg-\[\#0A1120\] {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+}
+
+/* Project page sticky header */
+html.light div.min-h-screen.bg-\[\#0A1120\] header {
+  background-color: rgba(255,255,255,0.97) !important;
+  border-color: rgba(0,0,0,0.15) !important;
+}
+html.light div.min-h-screen.bg-\[\#0A1120\] header a,
+html.light div.min-h-screen.bg-\[\#0A1120\] header span {
+  color: #000000 !important;
+}
+
+/* === SCHEMATIC BLOCKS === */
+/* Outer wrapper */
+html.light .detail-schematic {
+  background-color: #F3F4F6 !important;
+  border-color: rgba(0,0,0,0.2) !important;
+  box-shadow: 4px 4px 0px 0px #000000 !important;
+  color: #000000 !important;
+}
+
+/* Top bar border + footer bar */
+html.light .detail-schematic .border-b,
+html.light .detail-schematic .border-t {
+  border-color: rgba(0,0,0,0.18) !important;
+}
+
+/* Muted text in schematic */
+html.light .detail-schematic {
+  color: #000000 !important;
+}
+
+/* Top-right status badge (ON-DEVICE EXECUTION, KOTLIN/COMPOSE, etc.) */
+html.light .detail-schematic .schematic-status-badge {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+/* Navy pipeline rows → light grey */
+html.light .detail-schematic .schematic-row {
+  background-color: #E5E7EB !important;
+  border-color: rgba(0,0,0,0.15) !important;
+  color: #000000 !important;
+}
+html.light .detail-schematic .schematic-row span,
+html.light .detail-schematic .schematic-row * {
+  color: #000000 !important;
+}
+
+/* Cream highlight rows → pure black (YOLO engine, ESP32 controller) */
+html.light .detail-schematic .schematic-row-highlight {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  border-color: #000000 !important;
+}
+html.light .detail-schematic .schematic-row-highlight * {
+  color: #FFFFFF !important;
+}
+
+/* Inner badge inside highlight row (ARM Cortex-A76) */
+html.light .detail-schematic .schematic-inner-badge {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+}
+
+/* === PROJECT CARDS (Projects grid) in White Mode === */
+/* Badge pill (trophy prize: SPECIAL RECOGNITION, 2ND RUNNER-UP, etc.) on BOTH cream & navy cards */
+html.light .card-3d-cream .project-card-badge,
+html.light .card-3d-navy .project-card-badge,
+html.light .project-card-badge,
+html.light .card-3d-cream span.bg-\[\#14213D\],
+html.light .card-3d-navy span.bg-\[\#F4EDE0\] {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+html.light .card-3d-cream .project-card-badge *,
+html.light .card-3d-navy .project-card-badge *,
+html.light .project-card-badge *,
+html.light .card-3d-cream span.project-card-badge-text,
+html.light .card-3d-navy span.project-card-badge-text,
+html.light span.project-card-badge-text {
+  color: #FFFFFF !important;
+}
+
+html.light .card-3d-cream .project-card-badge svg,
+html.light .card-3d-navy .project-card-badge svg,
+html.light .project-card-badge svg,
+html.light .project-card-badge-icon,
+html.light .card-3d-cream .project-card-badge svg path,
+html.light .card-3d-navy .project-card-badge svg path {
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+}
+
+/* Domain tag (semi-transparent) on cream & navy cards */
+html.light .card-3d-cream span.bg-\[\#14213D\]\/10,
+html.light .card-3d-navy span.bg-\[\#F4EDE0\]\/10 {
+  background-color: rgba(0,0,0,0.08) !important;
+  color: #000000 !important;
+}
+
+/* BLUEPRINT → button on BOTH cream & navy cards */
+html.light .card-3d-cream .project-blueprint-btn,
+html.light .card-3d-navy .project-blueprint-btn,
+html.light .project-blueprint-btn,
+html.light .card-3d-cream span.bg-\[\#14213D\].text-\[\#F4EDE0\],
+html.light .card-3d-navy span.bg-\[\#F4EDE0\].text-\[\#14213D\] {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.3) !important;
+}
+
+html.light .card-3d-cream .project-blueprint-btn *,
+html.light .card-3d-navy .project-blueprint-btn *,
+html.light .project-blueprint-btn *,
+html.light .card-3d-cream span.project-blueprint-text,
+html.light .card-3d-navy span.project-blueprint-text,
+html.light span.project-blueprint-text {
+  color: #FFFFFF !important;
+}
+
+html.light .card-3d-cream .project-blueprint-btn svg,
+html.light .card-3d-navy .project-blueprint-btn svg,
+html.light .project-blueprint-btn svg,
+html.light .project-blueprint-arrow,
+html.light .card-3d-cream .project-blueprint-btn svg path,
+html.light .card-3d-navy .project-blueprint-btn svg path {
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+}
+
+/* === PROJECT DETAIL INTERIOR === */
+/* Contributions block (navy card with cream border) */
+html.light div.bg-\[\#14213D\].border-2.border-\[\#F4EDE0\] {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+  box-shadow: 5px 5px 0px 0px rgba(0,0,0,0.3) !important;
+}
+html.light div.bg-\[\#14213D\].border-2.border-\[\#F4EDE0\] * {
+  color: #FFFFFF !important;
+}
+
+/* bg-[#0A1120] rows inside card-3d-navy (pipeline stages, tech stack) */
+html.light .card-3d-navy div.bg-\[\#0A1120\] {
+  background-color: #F3F4F6 !important;
+  border-color: rgba(0,0,0,0.12) !important;
+}
+html.light .card-3d-navy div.bg-\[\#0A1120\] * {
+  color: #000000 !important;
+}
+
+/* ACTIVE badge and pipeline stage tags */
+html.light .card-3d-navy span.bg-\[\#F4EDE0\]\/10 {
+  background-color: rgba(0,0,0,0.07) !important;
+  color: #000000 !important;
+}
+
+/* Transparency notice card */
+html.light div.bg-\[\#F4EDE0\]\/5 {
+  background-color: rgba(0,0,0,0.04) !important;
+  border-color: rgba(0,0,0,0.15) !important;
+}
+html.light div.bg-\[\#F4EDE0\]\/5 * {
+  color: #000000 !important;
+}
+
+/* Next project footer navigation */
+html.light a.card-3d-navy span {
+  color: #000000 !important;
+}
+
+/* Achievements section in White Mode */
+html.light section#achievements,
+html.light section#achievements * {
+  color: #000000 !important;
+}
+html.light section#achievements {
+  background-color: #FFFFFF !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+html.light section#achievements .achievements-section-tag {
+  color: #000000 !important;
+}
+html.light section#achievements .achievements-heading {
+  color: #000000 !important;
+}
+html.light section#achievements .achievements-subtext {
+  color: rgba(0, 0, 0, 0.75) !important;
+}
+html.light section#achievements .bg-\[\#FAF6F0\] {
+  background-color: #FFFFFF !important;
+  border-color: #000000 !important;
+  box-shadow: 4px 4px 0px 0px #000000 !important;
+}
+html.light section#achievements .bg-\[\#FAF6F0\] * {
+  color: #000000 !important;
+}
+html.light section#achievements .bg-\[\#14213D\] {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+html.light section#achievements .bg-\[\#14213D\] * {
+  color: #FFFFFF !important;
+}
+
+/* Education Badges & Hat Icon in White Mode */
+html.light .education-badge-pill,
+html.light .card-3d-navy .education-badge-pill,
+html.light .card-3d-cream .education-badge-pill {
+  background-color: #000000 !important;
+  border: 1px solid #000000 !important;
+}
+html.light .education-badge-pill *,
+html.light .card-3d-navy .education-badge-pill *,
+html.light .card-3d-cream .education-badge-pill *,
+html.light .education-badge-text,
+html.light span.education-badge-text,
+html.light .card-3d-navy span.education-badge-text,
+html.light .card-3d-cream span.education-badge-text {
+  color: #FFFFFF !important;
+}
+html.light .education-badge-icon,
+html.light .education-badge-icon svg,
+html.light .education-badge-icon svg *,
+html.light .card-3d-cream .education-badge-icon svg,
+html.light .card-3d-navy .education-badge-icon svg {
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+  fill: none !important;
+}
+
+/* Footer & Social Icon Buttons in White Mode */
+html.light footer {
+  background-color: #FFFFFF !important;
+  border-top-color: rgba(0, 0, 0, 0.15) !important;
+}
+html.light footer p,
+html.light footer span {
+  color: #000000 !important;
+}
+html.light .footer-social-btn {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border: 1.5px solid #000000 !important;
+  box-shadow: 2.5px 2.5px 0px 0px #000000 !important;
+}
+html.light .footer-social-btn svg {
+  color: #000000 !important;
+}
+html.light .footer-social-btn svg:not(.lucide) {
+  fill: #000000 !important;
+}
+html.light .footer-social-btn svg.lucide {
+  stroke: #000000 !important;
+  fill: none !important;
+}
+html.light .footer-social-btn:hover {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+html.light .footer-social-btn:hover svg {
+  color: #FFFFFF !important;
+}
+html.light .footer-social-btn:hover svg:not(.lucide) {
+  fill: #FFFFFF !important;
+}
+html.light .footer-social-btn:hover svg.lucide {
+  stroke: #FFFFFF !important;
+  fill: none !important;
+}
+html.light .footer-top-btn {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  border: 1.5px solid #000000 !important;
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.3) !important;
+}
+html.light .footer-top-btn svg,
+html.light .footer-top-btn * {
+  color: #FFFFFF !important;
+}
+
+/* 3D Tactile Buttons in White Mode */
+html.light .btn-3d-cream {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.3) !important;
+}
+html.light .btn-3d-cream * {
+  color: #FFFFFF !important;
+}
+html.light .btn-3d-cream:hover {
+  transform: translate(-1px, -1px) !important;
+  box-shadow: 4px 4px 0px 0px #000000 !important;
+}
+
+html.light .btn-3d-navy {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 3px 3px 0px 0px #000000 !important;
+}
+html.light .btn-3d-navy * {
+  color: #000000 !important;
+}
+html.light .btn-3d-navy:hover {
+  transform: translate(-1px, -1px) !important;
+  box-shadow: 4px 4px 0px 0px #000000 !important;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   MOBILE RESPONSIVENESS — GLOBAL OVERRIDES
+   ============================================ */
+
+/* Prevent horizontal overflow on all screens */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Safe area padding for notched phones (iPhone) */
+@supports (padding: max(0px)) {
+  .px-5 {
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
+  }
+}
+
+/* Ensure images don't overflow on mobile */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Touch target minimum size for buttons on mobile */
+@media (max-width: 640px) {
+  button, a[role="button"], [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Hero heading scaling for small screens */
+  h1.font-heading {
+    font-size: clamp(1.6rem, 7vw, 3rem) !important;
+    line-height: 1.1 !important;
+  }
+
+  /* Cards shouldn't have overflow on mobile */
+  .card-3d-cream, .card-3d-navy {
+    overflow: hidden;
+  }
+
+  /* Ensure banner doesn't overflow */
+  .detail-schematic {
+    overflow-x: auto;
+  }
+
+  /* Gear animations — reduce complexity on mobile for performance */
+  .gear-wrapper {
+    display: none;
+  }
+}
