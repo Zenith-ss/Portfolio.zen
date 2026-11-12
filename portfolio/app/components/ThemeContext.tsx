@@ -11,21 +11,24 @@ type ThemeContextType = {
 };
 
 const ThemeContext = createContext<ThemeContextType>({
-  theme: "dark",
+  theme: "light",
   toggleTheme: () => {},
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setTheme] = useState<Theme>("light");
   const [isRippling, setIsRippling] = useState(false);
   const [rippleOrigin, setRippleOrigin] = useState({ x: 50, y: 50 });
 
   useEffect(() => {
-    // Check saved theme preference
+    // Check saved theme preference; default to light mode
     const savedTheme = localStorage.getItem("sameer_theme") as Theme | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.documentElement.classList.toggle("light", savedTheme === "light");
+    if (savedTheme === "dark") {
+      setTheme("dark");
+      document.documentElement.classList.remove("light");
+    } else {
+      setTheme("light");
+      document.documentElement.classList.add("light");
     }
   }, []);
 

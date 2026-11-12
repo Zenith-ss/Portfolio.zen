@@ -129,7 +129,7 @@ export default function Hero() {
           {/* Right: Live Lab Bench Status Widget */}
           <div className="hero-bench-widget w-full lg:w-auto p-3.5 rounded-xl bg-[#0A1120] border border-[#F4EDE0]/20 flex items-center gap-3.5 shadow-inner">
             <div className="hero-bench-icon w-10 h-10 rounded-lg bg-[#F4EDE0] text-[#14213D] flex items-center justify-center font-mono font-bold shrink-0">
-              <Cpu size={20} />
+              <Cpu size={20} className="hero-chip-icon" />
             </div>
             <div className="flex flex-col">
               <span className="font-mono text-[10px] text-[#F4EDE0]/60 uppercase tracking-widest flex items-center gap-1">

@@ -206,15 +206,29 @@ html.light .hero-bench-widget {
 html.light .hero-bench-widget span {
   color: #000000 !important;
 }
-html.light .hero-bench-icon {
+html.light .hero-bench-icon,
+html.light .card-3d-navy .hero-bench-icon,
+html.light div.bg-\[\#0A1120\] .hero-bench-icon {
   background-color: #000000 !important;
   color: #FFFFFF !important;
 }
-html.light .hero-bench-icon svg {
+html.light .hero-bench-icon svg,
+html.light .hero-bench-icon svg *,
+html.light .hero-chip-icon,
+html.light .hero-chip-icon *,
+html.light .card-3d-navy .hero-bench-icon svg,
+html.light .card-3d-navy .hero-bench-icon svg *,
+html.light .card-3d-navy div.bg-\[\#0A1120\] .hero-bench-icon svg,
+html.light .card-3d-navy div.bg-\[\#0A1120\] .hero-bench-icon svg *,
+html.light .card-3d-navy div.bg-\[\#0A1120\] .hero-chip-icon,
+html.light .card-3d-navy div.bg-\[\#0A1120\] .hero-chip-icon * {
   color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+  fill: none !important;
 }
 html.light .hero-activity-icon {
   color: #000000 !important;
+  stroke: #000000 !important;
 }
 html.light .hero-bar {
   background-color: #000000 !important;
@@ -529,11 +543,11 @@ html.light div.bg-\[\#14213D\].border-2.border-\[\#F4EDE0\] * {
 }
 
 /* bg-[#0A1120] rows inside card-3d-navy (pipeline stages, tech stack) */
-html.light .card-3d-navy div.bg-\[\#0A1120\] {
+html.light .card-3d-navy div.bg-\[\#0A1120\]:not(.hero-bench-widget) {
   background-color: #F3F4F6 !important;
   border-color: rgba(0,0,0,0.12) !important;
 }
-html.light .card-3d-navy div.bg-\[\#0A1120\] * {
+html.light .card-3d-navy div.bg-\[\#0A1120\]:not(.hero-bench-widget) * {
   color: #000000 !important;
 }
 
